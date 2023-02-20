@@ -15,6 +15,15 @@ app.get("/",function(req,res) {
     res.render("homepage");
 });
 
+app.get("/register",function(req,res) {
+    res.render("register");
+});
+
+app.post("/register",function(req,res) {
+    console.log(req.body);
+    res.send(req.body);
+});
+
 app.listen(3000,function() {
     console.log("Server is running on port 3000.");
 });

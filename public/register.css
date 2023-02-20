@@ -1,31 +1,9 @@
 body {
-  text-align: center;
   font-family: sans-serif;
-  background-image: image("/background-image.png");
+  text-align: center;
 }
 #main-div {
-  margin-top: 3%;
-}
-#bottom-div {
-  margin-top: 3%;
-}
-#top-h1 {
-  font-size: 300%;
-}
-.icons {
-  height: 50%;
-  width: 50%;
-}
-#hr1 {
-  width: 47%;
-  margin-left: 0;
-  height: 0;
-}
-#hr2 {
-  margin-bottom: 1.5%;
-  width: 47%;
-  margin-right: 0;
-  height: 0;
+    margin-top: 5%;
 }
 input {
   padding: 10px;
@@ -36,6 +14,18 @@ input {
   background-color: #f7f7f7;
   margin: 10px 0;
 }
+select {
+  padding: 10px;
+  font-size: 16px;
+  border: 2px solid #ccc;
+  border-radius: 8px;
+  appearance: none; /* remove default arrow icon */
+  background-image: url("arrow.png"); /* custom arrow icon */
+  background-repeat: no-repeat;
+  background-position: right center;
+  background-size: 16px 16px;
+}
+
 .button-15 {
   margin-left: auto;
   margin-right: auto;
