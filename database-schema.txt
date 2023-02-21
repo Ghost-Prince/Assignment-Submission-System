@@ -1,0 +1,49 @@
+Users collection:
+{
+    _id: ObjectId,
+    role: String, // "student", "faculty", or "hod"
+    name: String,
+    email: String,
+    password: String,
+    classrooms: [ObjectId], // list of classrooms for faculty and hod
+    enrolledClasses: [ObjectId] // list of classrooms for students
+}
+Classrooms collection:
+{
+    _id: ObjectId,
+    name: String,
+    description: String,
+    facultyId: ObjectId, // ID of the faculty who created the classroom
+    students: [ObjectId], // list of student IDs enrolled in the classroom
+    assignments: [ObjectId] // list of assignment IDs posted in the classroom
+}
+Assignments collection:
+{
+    _id: ObjectId,
+    title: String,
+    description: String,
+    dueDate: Date,
+    classroomId: ObjectId, // ID of the classroom the assignment belongs to
+    submissions: [ObjectId] // list of submission IDs for the assignment
+}
+Submissions collection:
+{
+    _id: ObjectId,
+    studentId: ObjectId, // ID of the student who submitted the assignment
+    assignmentId: ObjectId, // ID of the assignment the submission belongs to
+    filePath: String, // file path to the submitted assignment
+    submittedAt: Date,
+    score: Number // score awarded by the faculty
+}
+
+
+
+
+USER : 
+adeeb@student.com       123
+
+FACULTY :
+adeeb@faculty.com       123
+
+HOD :
+adeeb@hod.com           123
