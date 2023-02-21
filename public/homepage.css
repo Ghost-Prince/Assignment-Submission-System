@@ -17,16 +17,12 @@ body {
   width: 50%;
 }
 #hr1 {
-  width: 47%;
+  width: 100%;
   margin-left: 0;
+  margin-top: 2;
   height: 0;
 }
-#hr2 {
-  margin-bottom: 1.5%;
-  width: 47%;
-  margin-right: 0;
-  height: 0;
-}
+
 input {
   padding: 10px;
   border: 1px solid #ccc;

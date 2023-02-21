@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+<<<<<<< HEAD
     <head>
         <meta charset="utf-8">
         <title>Assignment Submission System | Homepage</title>
@@ -52,4 +53,62 @@
             </form>
         </div>
     </body>
+=======
+
+<head>
+    <meta charset="utf-8">
+    <title>Assignment Submission System | Homepage</title>
+    <link rel="stylesheet" href="homepage.css">
+</head>
+
+<body>
+    <h1 id="top-h1">Welcome to Assignment Submission System</h1>
+    <div id="main-div">
+        <table>
+            <tr>
+                <td><img class="icons" src="student.png" alt="student"></td>
+                <td><img class="icons" src="faculty.png" alt="faculty"></td>
+                <td><img class="icons" src="hod.png" alt="hod"></td>
+            </tr>
+            <tr>
+                <td>
+                    <form action="/student-login" method="post">
+                        <input type="email" name="studentEmail" placeholder="Student's email">
+                        <br>
+                        <input type="password" name="studentPassword" placeholder="Password">
+                        <br><br>
+                        <button class="button-15" type="submit">Student login</button>
+                    </form>
+                </td>
+                <td>
+                    <form action="/faculty-login">
+                        <input type="email" name="facultyEmail" placeholder="Faculty's email">
+                        <br>
+                        <input type="password" name="facultyPassword" placeholder="Password">
+                        <br><br>
+                        <button class="button-15" type="submit">Faculty login</button>
+                    </form>
+                </td>
+                <td>
+                    <form action="/hod-login">
+                        <input type="email" name="hodEmail" placeholder="HOD's email">
+                        <br>
+                        <input type="password" name="hodPassword" placeholder="Password">
+                        <br><br>
+                        <button class="button-15" type="submit">HOD login</button>
+                    </form>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div id="bottom-div">
+        <hr id="hr1">
+        <p>OR</p>
+        <form action="/register" method="get">
+            <button class="button-15" type="submit">Create account</button>
+        </form>
+    </div>
+</body>
+
+>>>>>>> 54555454c0c95413538b907b7be03358d146c4ef
 </html>
