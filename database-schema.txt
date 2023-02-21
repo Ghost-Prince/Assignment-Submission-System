@@ -40,10 +40,10 @@ Submissions collection:
 
 
 USER : 
-adeeb@student.com       123
+user@student.com       123
 
 FACULTY :
-adeeb@faculty.com       123
+user@faculty.com       123
 
 HOD :
-adeeb@hod.com           123
+user@hod.com           123
