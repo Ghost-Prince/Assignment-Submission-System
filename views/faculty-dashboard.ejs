@@ -3,10 +3,13 @@
     <head>
         <meta charset="utf-8">
         <title><%= NAME %> dashboard</title>
+        <link rel="stylesheet" href="faculty-dashboard.css">
     </head>
     <body>
         <p>Login Successful. This is faculty dashboard.</p>
         <h1>Welcome <%= NAME %></h1>
-        <p>Role: <%= ROLE %></p>
+        <div id="main-div">
+            <a id="create-classroom" href="/create-classroom">Create classroom</a>
+        </div>
     </body>
 </html>
