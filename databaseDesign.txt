@@ -1,0 +1,77 @@
+Collection: Users
+This collection will store information about all users, including students, faculty, and HODs. 
+The role field will be used to distinguish between different types of users.
+
+{
+  "_id": ObjectId,
+  "name": String,
+  "email": String,
+  "password": String,
+  "role": String, // "student", "faculty", or "hod"
+  "isHOD": Boolean, // only applicable for faculty users
+  "batch": String, // only applicable for student users
+  "branch": String, // only applicable for student users
+  "department": String // only applicable for faculty users
+}
+
+
+Collection: Assignments
+This collection will store information about all assignments. 
+The facultyId field will reference the _id of the faculty member who created the assignment.
+
+{
+  "_id": ObjectId,
+  "title": String,
+  "description": String,
+  "dueDate": Date,
+  "batch": String,
+  "branch": String,
+  "facultyId": ObjectId,
+  "department": String
+}
+
+
+Collection: Submissions
+This collection will store information about all submissions. 
+The studentId field will reference the _id of the student who submitted the assignment, and the assignmentId field will reference the _id of the assignment to which the submission is associated.
+
+{
+  "_id": ObjectId,
+  "students": [
+    {
+      "studentId": ObjectId,
+      "link": String,
+      "dateSubmitted": Date
+    }
+  ],
+  "assignmentId": ObjectId,
+}
+
+
+--------------Example run--------------------
+
+Here is an example of how to use this schema for a given scenario:
+
+A faculty member with _id "123" creates an assignment with _id "456" for batch "B1" in branch "CS".
+{
+  "_id": ObjectId("456"),
+  "title": "Assignment 1",
+  "description": "Write a program in Java to do X, Y, and Z",
+  "dueDate": ISODate("2023-03-01T00:00:00Z"),
+  "batch": "B1",
+  "branch": "CS",
+  "facultyId": ObjectId("123")
+}
+
+All students in batch "B1" in branch "CS" can view this assignment on their dashboard.
+A student with _id "789" submits a link to their assignment for assignment with _id "456".
+{
+  "_id": ObjectId("789abc"),
+  "studentId": ObjectId("789"),
+  "assignmentId": ObjectId("456"),
+  "link": "https://github.com/abc",
+  "dateSubmitted": ISODate("2023-02-22T10:00:00Z")
+}
+
+The faculty member with _id "123" can view all submissions for assignment with _id "456".
+db.submissions.find({ assignmentId: ObjectId("456") })
