@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Create classroom</title>
+        <link rel="stylesheet" href="post-assignment.css">
+    </head>
+    <body>
+        <div id="main-div">
+            <h1>Fill the following details and click the 'Post assignment' button</h1>
+            <form action="/post-assignment" method="post">
+                <table align="center" style="text-align: left;">
+                    <tr>
+                        <td>Name:</td>
+                        <td><input type="text" name="assName" placeholder="Enter assignment's name"></td>
+                    </tr>
+                    <tr>
+                        <td>Description:</td>
+                        <td><textarea name="assDescription" id="" cols="30" rows="10" placeholder="Description of assignment"></textarea></td>
+                    </tr>
+                    <tr>
+                        <td>Due date:</td>
+                        <td><input type="date" name="assDueDate"></td>
+                    </tr>
+                    <tr>
+                        <td>Branch:</td>
+                        <td>
+                            <select name="assBranch" id="">
+                                <option value="" selected>select one</option>
+                                <option value="CSE">Computer Science Engineering</option>
+                                <option value="ECE">Electronics and Communication Engineering</option>
+                                <option value="EE">Electrical Engineering</option>
+                                <option value="ME">Mechanical Engineering</option>
+                                <option value="CE">Civil Engineering</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Semester:</td>
+                        <td>
+                            <select name="assSemester" id="">
+                                <option value=0 selected>select one</option>
+                                <% for(let sem=1; sem<=8; sem++) { %>
+                                    <option value=<%= sem %>> <%= sem %> </option>
+                                <% } %>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Faculty's user ID: &emsp;&emsp;</td>
+                        <td><input type="number" name="assfacultyID" placeholder="User ID of faculty"></td>
+                    </tr>
+                </table>
+                <button class="button-15" type="submit">Post assignment</button>
+            </form>
+        </div>
+    </body>
+</html>

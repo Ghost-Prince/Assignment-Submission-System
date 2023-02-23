@@ -3,6 +3,18 @@
     font-family: sans-serif;
 }
 
+select {
+    padding: 10px;
+    font-size: 16px;
+    border: 2px solid #ccc;
+    border-radius: 8px;
+    appearance: none; /* remove default arrow icon */
+    background-image: url("arrow.png"); /* custom arrow icon */
+    background-repeat: no-repeat;
+    background-position: right center;
+    background-size: 16px 16px;
+}
+
 input {
     padding: 10px;
     border: 1px solid #ccc;

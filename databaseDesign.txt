@@ -20,14 +20,13 @@ This collection will store information about all assignments.
 The facultyId field will reference the _id of the faculty member who created the assignment.
 
 {
-  "_id": ObjectId,
-  "title": String,
-  "description": String,
-  "dueDate": Date,
-  "batch": String,
-  "branch": String,
-  "facultyId": ObjectId,
-  "department": String
+    ID : Number,
+    title : String,
+    description : String,
+    dueDate : Date,
+    branch : String,
+    semester : Number,
+    facultyID : Number
 }
 
 

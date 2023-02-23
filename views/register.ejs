@@ -12,24 +12,48 @@
                 <table align="center" style="text-align: left; margin-bottom: 1%;">
                     <tr>
                         <td><label>Name:</label></td>
-                        <td><input type="text" name="newName" placeholder="Enter name"></td>
+                        <td><input type="text" name="newName" placeholder="Enter name" required></td>
                     </tr>
                     <tr>
                         <td><label>E-mail:</label></td>
-                        <td><input type="email" name="newEmail" placeholder="username@example.com"></td>
+                        <td><input type="email" name="newEmail" placeholder="username@example.com" required></td>
                     </tr>
                     <tr>
                         <td><label>Password:&emsp;&emsp;</label></td>
-                        <td><input type="password" name="newPassword" placeholder="atleast 8 characters"></td>
+                        <td><input type="password" name="newPassword" placeholder="atleast 8 characters" required></td>
                     </tr>
                     <tr>
                         <td><label>Role:</label></td>
                         <td>
-                            <select name="newRole" id="">
+                            <select name="newRole" id="" required>
                                 <option selected>select one</option>
                                 <option value="student">Student</option>
                                 <option value="faculty">Faculty</option>
                                 <option value="hod">HOD</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><label>Branch:</label></td>
+                        <td>
+                            <select name="newBranch" id="">
+                                <option value="" selected>select one</option>
+                                <option value="CSE">Computer Science Engineering</option>
+                                <option value="ECE">Electronics and Communication Engineering</option>
+                                <option value="EE">Electrical Engineering</option>
+                                <option value="ME">Mechanical Engineering</option>
+                                <option value="CE">Civil Engineering</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><label>Semester:</label></td>
+                        <td>
+                            <select name="newSemester" id="">
+                                <option value=0 selected>select one</option>
+                                <% for(let sem=1; sem<=8; sem++) { %>
+                                    <option value=<%= sem %>> <%= sem %> </option>
+                                <% } %>
                             </select>
                         </td>
                     </tr>
