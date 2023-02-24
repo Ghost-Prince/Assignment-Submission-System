@@ -13,5 +13,14 @@
             <a id="post-assignment" href="/post-assignment">Post assignment</a>
         </div>
         <p>Role: <%= ROLE %></p>
+        <h2>Below are the assignments posted by you.</h2>
+        <% for(let index = 0; index < IDarray.length; index++) { %>
+            <hr>
+            <h3>Assignment ID: <%= IDarray[index] %> </h3>
+            <h3>Title: <%= title[index] %></h3>
+            <p>Description: <%= description[index] %></p>
+            <h4>Due Date: <%= dueDate[index] %></h4>
+            <a href="">View submissions <%= IDarray[index] %></a>
+        <% } %>
     </body>
 </html>

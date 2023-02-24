@@ -128,10 +128,23 @@ app.post("/login-faculty", (req, res) => {
             res.send("User not found");
         }
         else if (foundUser.password === md5(req.body.password)) {
-            res.render("faculty-dashboard", {
-                NAME: foundUser.name,
-                ROLE: foundUser.role,
-                ID: foundUser.ID
+            let ID_f = [], title_f = [], description_f = [], dueDate_f = [];
+            ASSIGNMENT.find({facultyID : foundUser.ID},(err,assignments_f)=> {
+                for(let index = 0; index < assignments_f.length; index++) {
+                    ID_f.push(assignments_f[index].ID);
+                    title_f.push(assignments_f[index].title);
+                    description_f.push(assignments_f[index].description);
+                    dueDate_f.push(assignments_f[index].dueDate);
+                }
+                res.render("faculty-dashboard", {
+                    NAME: foundUser.name,
+                    ROLE: foundUser.role,
+                    ID: foundUser.ID,
+                    IDarray : ID_f,
+                    title : title_f,
+                    description : description_f,
+                    dueDate : dueDate_f
+                });
             });
         }
         else {

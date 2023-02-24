@@ -4,3 +4,7 @@
 Added functionality to display Assignments posted by Faculty on the Student's dashboard.
     ---> Faculty need to login and post the assignments.
     ---> Students need to login and see posted assignments.
+
+Added functionality to display assignments posted by faculty on faculty's dashboard.
+    ---> Faculty needs to login and post assignment.
+    ---> The posted assignments will be visible on faculty's dashboard.
