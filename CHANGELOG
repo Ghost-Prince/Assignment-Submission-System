@@ -1,2 +1,6 @@
 24-02-2023 03:22 PM
 - Implements error handling for all the logins (student, faculty, and hod).
+
+Added functionality to display Assignments posted by Faculty on the Student's dashboard.
+    ---> Faculty need to login and post the assignments.
+    ---> Students need to login and see posted assignments.

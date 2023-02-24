@@ -89,11 +89,25 @@ app.post("/login-student", (req, res) => {
             res.send("User not found");
         }
         else if (foundUser.password === md5(req.body.password)) {
-            console.log(foundUser);
-            res.render("student-dashboard", {
-                NAME: foundUser.name,
-                ROLE: foundUser.role,
-                ID: foundUser.ID
+            let IDs = [], titles = [], descriptions = [], dueDates = [];
+            ASSIGNMENT.find({branch : foundUser.branch, semester : foundUser.semester},(err,assignments)=> {
+                for(let index = 0; index < assignments.length; index++) {
+                    IDs.push(assignments[index].ID);
+                    titles.push(assignments[index].title);
+                    descriptions.push(assignments[index].description);
+                    dueDates.push(assignments[index].dueDate);
+                }
+                console.log(IDs, titles, descriptions, dueDates);
+                console.log(foundUser);
+                res.render("student-dashboard", {
+                    NAME: foundUser.name,
+                    ROLE: foundUser.role,
+                    ID: foundUser.ID,
+                    IDarray : IDs,
+                    title : titles,
+                    description : descriptions,
+                    dueDate : dueDates
+                });
             });
         }
         else {
