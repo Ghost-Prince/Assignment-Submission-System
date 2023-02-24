@@ -20,12 +20,12 @@ Assignments collection:
 }
 Submissions collection:
 {
-    _id: ObjectId,
-    studentId: ObjectId, // ID of the student who submitted the assignment
-    assignmentId: ObjectId, // ID of the assignment the submission belongs to
-    filePath: String, // file path to the submitted assignment
-    submittedAt: Date,
-    score: Number // score awarded by the faculty
+    ID: Number,
+    assignmentId: Number,
+    studentID: Number,
+    link: String,
+    score: Number,
+    dateSubmitted: Date
 }
 
 
@@ -39,3 +39,5 @@ user@faculty.com       123
 
 HOD :
 user@hod.com           123
+
+<td><input type="date" name="assDueDate" min="<%= new Date().toISOString().split('T')[0] %>"></td>

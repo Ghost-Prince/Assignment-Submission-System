@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Submit Assignment <%= ID %> </title>
+    </head>
+    <body>
+        <h3>Assignment ID: <%= ID %> </h3>
+        <h3>Title of assignment: <%= title %> </h3>
+        <p>Description: <%= description %></p>
+        <h4>Due date: <%= dueDate %> </h4>
+        <hr>
+        <h2>Fill the following details:</h2>
+        <div id="form-div">
+            <form action= <%= "/submit-assignment/" + ID.toString() %> method="post">
+                <table cellspacing="15px">
+                    <tr>
+                        <td>Assignment ID:</td>
+                        <td>
+                            <select name="assID" id="" required>
+                                <option value= <%= ID %> selected> <%= ID %> </option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Link (Google drive, Dropbox, Mega, Github etc.):</td>
+                        <td><input type="text" name="assLink" placeholder="Link of your solution" required></td>
+                    </tr>
+                    <tr>
+                        <td>User ID: </td>
+                        <td><input type="number" name="assStudentID" placeholder="User ID of Student" required></td>
+                    </tr>
+                </table>
+                <button type="submit">Submit assignment</button>
+            </form>
+        </div>
+    </body>
+</html>

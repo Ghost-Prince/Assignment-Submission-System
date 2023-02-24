@@ -38,6 +38,16 @@ const assignmentSchema = new mongoose.Schema({
 });
 const ASSIGNMENT = new mongoose.model("Assignment", assignmentSchema);
 
+const submissionSchema = new mongoose.Schema({
+    ID: Number,
+    assignmentId: Number,
+    studentID: Number,
+    link: String,
+    score: Number,
+    dateSubmitted: Date
+});
+const SUBMISSION = new mongoose.model("Submission", submissionSchema);
+
 app.get("/", (req, res) => {
     res.render("homepage");
 });
@@ -48,6 +58,19 @@ app.get("/register", (req, res) => {
 
 app.get("/post-assignment", (req, res) => {
     res.render("post-assignment");
+});
+
+app.get("/submit-assignment/:assID",(req,res)=> {
+    let assignmentToSubmit = Number(req.params.assID);
+    console.log("Assignment ID to submit: ",assignmentToSubmit);
+    ASSIGNMENT.findOne({ID : assignmentToSubmit},(err,foundAssignment)=> {
+        res.render("submit-assignment",{
+            ID : foundAssignment.ID,
+            title : foundAssignment.title,
+            description : foundAssignment.description,
+            dueDate : foundAssignment.dueDate
+        });
+    });
 });
 
 app.post("/register", (req, res) => {
@@ -97,8 +120,6 @@ app.post("/login-student", (req, res) => {
                     descriptions.push(assignments[index].description);
                     dueDates.push(assignments[index].dueDate);
                 }
-                console.log(IDs, titles, descriptions, dueDates);
-                console.log(foundUser);
                 res.render("student-dashboard", {
                     NAME: foundUser.name,
                     ROLE: foundUser.role,
@@ -197,6 +218,34 @@ app.post("/post-assignment", (req, res) => {
     catch (err) {
         res.send(err);
     }
+});
+
+app.post("/submit-assignment/:assID",(req,res)=> {
+    console.log(req.body);
+    SUBMISSION.count({},(err,count)=> {
+        if(err) {
+            res.send(err);
+        }
+        else {
+            const tempSubmission = new SUBMISSION({
+                ID : count + 1,
+                assignmentId : Number(req.body.assID),
+                studentID : Number(req.body.assStudentID),
+                link : req.body.assLink,
+                score : -1,
+                dateSubmitted : new Date()
+            });
+            tempSubmission.save((err)=> {
+                if(err) {
+                    res.send(err);
+                }
+                else {
+                    console.log(tempSubmission);
+                    res.send("Assignment submitted successfully.")
+                }
+            });
+        }
+    });
 });
 
 app.listen(3000, () => {
