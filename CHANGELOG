@@ -10,3 +10,6 @@ Added functionality to display assignments posted by faculty on faculty's dashbo
     ---> The posted assignments will be visible on faculty's dashboard.
 
 Added functionality for students to submit assignment.
+
+Bug: A student can login into faculty and hod's dashboard, using the same credentials.
+Fixed: Added a check to verify the user type before logging in.

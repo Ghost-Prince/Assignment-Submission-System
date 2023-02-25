@@ -60,15 +60,15 @@ app.get("/post-assignment", (req, res) => {
     res.render("post-assignment");
 });
 
-app.get("/submit-assignment/:assID",(req,res)=> {
+app.get("/submit-assignment/:assID", (req, res) => {
     let assignmentToSubmit = Number(req.params.assID);
-    console.log("Assignment ID to submit: ",assignmentToSubmit);
-    ASSIGNMENT.findOne({ID : assignmentToSubmit},(err,foundAssignment)=> {
-        res.render("submit-assignment",{
-            ID : foundAssignment.ID,
-            title : foundAssignment.title,
-            description : foundAssignment.description,
-            dueDate : foundAssignment.dueDate
+    console.log("Assignment ID to submit: ", assignmentToSubmit);
+    ASSIGNMENT.findOne({ ID: assignmentToSubmit }, (err, foundAssignment) => {
+        res.render("submit-assignment", {
+            ID: foundAssignment.ID,
+            title: foundAssignment.title,
+            description: foundAssignment.description,
+            dueDate: foundAssignment.dueDate
         });
     });
 });
@@ -111,10 +111,10 @@ app.post("/login-student", (req, res) => {
             // show a popup saying invalid email or password and redirect to login page
             res.send("User not found");
         }
-        else if (foundUser.password === md5(req.body.password)) {
+        else if (foundUser.password === md5(req.body.password) && foundUser.role === "student") {
             let IDs = [], titles = [], descriptions = [], dueDates = [];
-            ASSIGNMENT.find({branch : foundUser.branch, semester : foundUser.semester},(err,assignments)=> {
-                for(let index = 0; index < assignments.length; index++) {
+            ASSIGNMENT.find({ branch: foundUser.branch, semester: foundUser.semester }, (err, assignments) => {
+                for (let index = 0; index < assignments.length; index++) {
                     IDs.push(assignments[index].ID);
                     titles.push(assignments[index].title);
                     descriptions.push(assignments[index].description);
@@ -124,10 +124,10 @@ app.post("/login-student", (req, res) => {
                     NAME: foundUser.name,
                     ROLE: foundUser.role,
                     ID: foundUser.ID,
-                    IDarray : IDs,
-                    title : titles,
-                    description : descriptions,
-                    dueDate : dueDates
+                    IDarray: IDs,
+                    title: titles,
+                    description: descriptions,
+                    dueDate: dueDates
                 });
             });
         }
@@ -148,10 +148,10 @@ app.post("/login-faculty", (req, res) => {
             // show a popup saying invalid email or password and redirect to login page
             res.send("User not found");
         }
-        else if (foundUser.password === md5(req.body.password)) {
+        else if (foundUser.password === md5(req.body.password) && foundUser.role === "faculty") {
             let ID_f = [], title_f = [], description_f = [], dueDate_f = [];
-            ASSIGNMENT.find({facultyID : foundUser.ID},(err,assignments_f)=> {
-                for(let index = 0; index < assignments_f.length; index++) {
+            ASSIGNMENT.find({ facultyID: foundUser.ID }, (err, assignments_f) => {
+                for (let index = 0; index < assignments_f.length; index++) {
                     ID_f.push(assignments_f[index].ID);
                     title_f.push(assignments_f[index].title);
                     description_f.push(assignments_f[index].description);
@@ -161,16 +161,16 @@ app.post("/login-faculty", (req, res) => {
                     NAME: foundUser.name,
                     ROLE: foundUser.role,
                     ID: foundUser.ID,
-                    IDarray : ID_f,
-                    title : title_f,
-                    description : description_f,
-                    dueDate : dueDate_f
+                    IDarray: ID_f,
+                    title: title_f,
+                    description: description_f,
+                    dueDate: dueDate_f
                 });
             });
         }
         else {
             // show a popup saying invalid email or password and redirect to login page
-            res.send("Password incorrect");
+            res.send("Email or Password incorrect");
         }
     });
 });
@@ -184,7 +184,7 @@ app.post("/login-hod", (req, res) => {
         else if (!foundUser) {
             res.send("User not found");
         }
-        else if (foundUser.password === md5(req.body.password)) {
+        else if (foundUser.password === md5(req.body.password) && foundUser.role === "hod") {
             res.render("hod-dashboard", {
                 NAME: foundUser.name,
                 ROLE: foundUser.role,
@@ -220,23 +220,23 @@ app.post("/post-assignment", (req, res) => {
     }
 });
 
-app.post("/submit-assignment/:assID",(req,res)=> {
+app.post("/submit-assignment/:assID", (req, res) => {
     console.log(req.body);
-    SUBMISSION.count({},(err,count)=> {
-        if(err) {
+    SUBMISSION.count({}, (err, count) => {
+        if (err) {
             res.send(err);
         }
         else {
             const tempSubmission = new SUBMISSION({
-                ID : count + 1,
-                assignmentId : Number(req.body.assID),
-                studentID : Number(req.body.assStudentID),
-                link : req.body.assLink,
-                score : -1,
-                dateSubmitted : new Date()
+                ID: count + 1,
+                assignmentId: Number(req.body.assID),
+                studentID: Number(req.body.assStudentID),
+                link: req.body.assLink,
+                score: -1,
+                dateSubmitted: new Date()
             });
-            tempSubmission.save((err)=> {
-                if(err) {
+            tempSubmission.save((err) => {
+                if (err) {
                     res.send(err);
                 }
                 else {
