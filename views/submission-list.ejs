@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Submissions | Student: <%= ID %></title>
+    </head>
+    <body>
+        <h1>Below is the list of submissions done by you</h1>
+        <p>NOTE: If the score is appearing to be -1, then it means that your teacher has not eveluated your assignment.</p>
+        <% for(let index = 0; index < subID.length; index++) { %>
+            <hr>
+            <h3>Submission ID: <%= subID[index] %> </h3>
+            <h3>Assignment ID: <%= assID[index] %> </h3>
+            <a href= <%= solLink[index] %> >Solution Link</a>
+            <h4>Score : <%= score[index] %> </h4>
+            <h5>Date of submission: <%= subDate[index] %> </h5>
+        <% } %>
+    </body>
+</html>

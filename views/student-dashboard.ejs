@@ -9,6 +9,7 @@
         <h1>Welcome <%= NAME %></h1>
         <p>Your User ID is <%= ID %></p>
         <p>Role: <%= ROLE %></p>
+        <a href=<%= "/view-student-submission/" + ID.toString() %> >View your submissions</a>
         <% for(let index = 0; index < IDarray.length; index++) { %>
             <hr>
             <h3>Assignment ID: <%= IDarray[index] %> </h3>

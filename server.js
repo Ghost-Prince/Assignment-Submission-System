@@ -73,6 +73,27 @@ app.get("/submit-assignment/:assID", (req, res) => {
     });
 });
 
+app.get("/view-student-submission/:student_user_ID",(req,res)=> {
+    SUBMISSION.find({studentID : req.params.student_user_ID},(err,foundSubmissions)=> {
+        let submission_ID = [], assignment_ID = [], solution_link = [], awarded_score = [], submission_date = [];
+        for(let index = 0; index < foundSubmissions.length; index++) {
+            submission_ID.push(foundSubmissions[index].ID);
+            assignment_ID.push(foundSubmissions[index].assignmentId);
+            solution_link.push(foundSubmissions[index].link);
+            awarded_score.push(foundSubmissions[index].score);
+            submission_date.push(foundSubmissions[index].dateSubmitted);
+        }
+        res.render("submission-list",{
+            ID : req.params.student_user_ID,
+            subID : submission_ID,
+            assID : assignment_ID,
+            solLink : solution_link,
+            score : awarded_score,
+            subDate : submission_date
+        });
+    });
+});
+
 app.get("/view-submissions/:assID",(req,res)=> {
     console.log("Showing submission for Assignment: ", req.params.assID);
     SUBMISSION.find({assignmentId : req.params.assID},(err,foundSubmissions)=>{
