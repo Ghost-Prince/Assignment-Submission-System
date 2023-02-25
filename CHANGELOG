@@ -18,3 +18,5 @@ Fixed: Added a check to verify the user type before logging in.
 Added functionality for faculty to award score.
 
 Added functionality for students to check their score.
+
+- score awarded by faculty will be checked for validity.

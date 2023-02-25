@@ -297,6 +297,14 @@ app.post("/submit-assignment/:assID", (req, res) => {
 });
 
 app.post("/set-score/:subID",(req,res)=> {
+    if (req.body.submissionScore === "" || req.body.submissionScore === null || req.body.submissionScore === undefined || isNaN(req.body.submissionScore)) {
+        // open a popup saying invalid score
+        res.send("Invalid score.");
+    }
+    else if (Number(req.body.submissionScore) < 0 || Number(req.body.submissionScore) > 100) {
+        // open a popup saying invalid score
+        res.send("Invalid score.");
+    }
     SUBMISSION.updateOne({ID : req.params.subID},{score : Number(req.body.submissionScore)},(err)=> {
         if(err) {
             res.send("Something went wrong.");
