@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Submissions | Ass. ID: <%= ASS_ID %> </title>
+    </head>
+    <body>
+        <h1>Below are the submissions for Assignment <%= ASS_ID %> </h1>
+        <% for(let index = 0; index < submissionID.length; index++) { %>
+            <hr>
+            <h3>Submission ID: <%= submissionID[index] %> </h3>
+            <h4>Student ID: <%= studentID[index] %> </h4>
+            <a href= <%= submissionLink[index] %> >Sulution link</a>
+            <h4>Current score: <%= submissionScore[index] %> </h4>
+            <h4>Date of submission: <%= submissionDate[index] %></h4>
+            <form action=<%= "/set-score/" + submissionID[index].toString() %> method="post">
+                <table cellspacing="15px">
+                    <tr>
+                        <td>Score:</td>
+                        <td><input type="text" name="submissionScore" placeholder="Enter score"></td>
+                    </tr>
+                </table>
+                <button type="submit">Award score</button>
+            </form>
+        <% } %>
+    </body>
+</html>

@@ -13,3 +13,6 @@ Added functionality for students to submit assignment.
 
 Bug: A student can login into faculty and hod's dashboard, using the same credentials.
 Fixed: Added a check to verify the user type before logging in.
+
+
+Added functionality for faculty to award score.

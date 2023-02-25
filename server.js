@@ -73,6 +73,29 @@ app.get("/submit-assignment/:assID", (req, res) => {
     });
 });
 
+app.get("/view-submissions/:assID",(req,res)=> {
+    console.log("Showing submission for Assignment: ", req.params.assID);
+    SUBMISSION.find({assignmentId : req.params.assID},(err,foundSubmissions)=>{
+        let ID_s = [], students_ID_s = [], link_s = [], submittedOn_s = [], score_s = [];
+        for(let index = 0; index < foundSubmissions.length; index++) {
+            ID_s.push(foundSubmissions[index].ID);
+            students_ID_s.push(foundSubmissions[index].studentID);
+            link_s.push(foundSubmissions[index].link);
+            submittedOn_s.push(foundSubmissions[index].dateSubmitted);
+            score_s.push(foundSubmissions[index].score);
+        }
+        console.log(link_s);
+        res.render("view-submissions",{
+            ASS_ID : req.params.assID,
+            submissionID : ID_s,
+            studentID : students_ID_s,
+            submissionLink : link_s,
+            submissionDate : submittedOn_s,
+            submissionScore : score_s
+        });
+    });
+});
+
 app.post("/register", (req, res) => {
     USER.count({}, (err1, count) => {
         if (err1) {
@@ -149,13 +172,15 @@ app.post("/login-faculty", (req, res) => {
             res.send("User not found");
         }
         else if (foundUser.password === md5(req.body.password) && foundUser.role === "faculty") {
-            let ID_f = [], title_f = [], description_f = [], dueDate_f = [];
+            let ID_f = [], title_f = [], description_f = [], dueDate_f = [], branch_f = [], semester_f = [];
             ASSIGNMENT.find({ facultyID: foundUser.ID }, (err, assignments_f) => {
                 for (let index = 0; index < assignments_f.length; index++) {
                     ID_f.push(assignments_f[index].ID);
                     title_f.push(assignments_f[index].title);
                     description_f.push(assignments_f[index].description);
                     dueDate_f.push(assignments_f[index].dueDate);
+                    branch_f.push(assignments_f[index].branch);
+                    semester_f.push(assignments_f[index].semester);
                 }
                 res.render("faculty-dashboard", {
                     NAME: foundUser.name,
@@ -164,7 +189,9 @@ app.post("/login-faculty", (req, res) => {
                     IDarray: ID_f,
                     title: title_f,
                     description: description_f,
-                    dueDate: dueDate_f
+                    dueDate: dueDate_f,
+                    branch : branch_f,
+                    semester : semester_f
                 });
             });
         }
@@ -244,6 +271,17 @@ app.post("/submit-assignment/:assID", (req, res) => {
                     res.send("Assignment submitted successfully.")
                 }
             });
+        }
+    });
+});
+
+app.post("/set-score/:subID",(req,res)=> {
+    SUBMISSION.updateOne({ID : req.params.subID},{score : Number(req.body.submissionScore)},(err)=> {
+        if(err) {
+            res.send("Something went wrong.");
+        }
+        else {
+            res.send("Score awarded successfully.");
         }
     });
 });
