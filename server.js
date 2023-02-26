@@ -117,6 +117,29 @@ app.get("/view-submissions/:assID",(req,res)=> {
     });
 });
 
+app.get("/show-posted-assignments/:facID",(req,res)=> {
+    ASSIGNMENT.find({facultyID : Number(req.params.facID)},(err,assignmentsByFaculty)=> {
+        let ID_a = [], branch_a = [], semester_a = [], title_a = [], description_a = [], dueDate_a = [];
+        for(let index = 0; index < assignmentsByFaculty.length; index++) {
+            ID_a.push(assignmentsByFaculty[index].ID);
+            branch_a.push(assignmentsByFaculty[index].branch);
+            semester_a.push(assignmentsByFaculty[index].semester);
+            title_a.push(assignmentsByFaculty[index].title);
+            description_a.push(assignmentsByFaculty[index].description);
+            dueDate_a.push(assignmentsByFaculty[index].dueDate);
+        }
+        res.render("show-posted-assignments",{
+            facID : req.params.facID,
+            ID : ID_a,
+            branch : branch_a,
+            semester : semester_a,
+            title : title_a,
+            description : description_a,
+            dueDate : dueDate_a
+        });
+    });
+});
+
 app.post("/register", (req, res) => {
     USER.count({}, (err1, count) => {
         if (err1) {
@@ -233,10 +256,19 @@ app.post("/login-hod", (req, res) => {
             res.send("User not found");
         }
         else if (foundUser.password === md5(req.body.password) && foundUser.role === "hod") {
-            res.render("hod-dashboard", {
-                NAME: foundUser.name,
-                ROLE: foundUser.role,
-                ID: foundUser.ID
+            USER.find({role : "faculty"},(err,foundFaculty)=> {
+                let ID_f = [], name_f = [];
+                for(let index = 0; index < foundFaculty.length; index++) {
+                    ID_f.push(foundFaculty[index].ID);
+                    name_f.push(foundFaculty[index].name);
+                }
+                res.render("hod-dashboard", {
+                    NAME: foundUser.name,
+                    ROLE: foundUser.role,
+                    ID: foundUser.ID,
+                    ID2 : ID_f,
+                    name : name_f
+                });
             });
         }
         else {

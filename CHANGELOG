@@ -20,3 +20,5 @@ Added functionality for faculty to award score.
 Added functionality for students to check their score.
 
 - score awarded by faculty will be checked for validity.
+
+The HOD can see assignments posted by faculties

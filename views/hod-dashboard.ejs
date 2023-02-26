@@ -9,5 +9,12 @@
         <h1>Welcome <%= NAME %></h1>
         <p>Your User ID is <%= ID %></p>
         <p>Role: <%= ROLE %></p>
+        <h1>Below is the list of faculties</h1>
+        <% for(let index = 0; index < ID2.length; index++) { %>
+            <hr>
+            <h3>Faculty ID: <%= ID2[index] %> </h3>
+            <h3>Name: <%= name[index] %> </h3>
+            <a href= <%= "/show-posted-assignments/" + ID2[index].toString() %> >Show assignments posted by <%= name[index] %> </a>
+        <% } %>
     </body>
 </html>

@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Assignments posted | <%= facID %> </title>
+    </head>
+    <body>
+        <h1>Below are the assignments posted by faculty : <%= facID %> </h1>
+        <% for(let index = 0; index < ID.length; index++) { %>
+            <hr>
+            <h3>Assignment ID : <%= ID[index] %> </h3>
+            <h4>Branch : <%= branch[index] %> </h4>
+            <h4>Semester : <%= semester[index] %> </h4>
+            <h4>Title : <%= title[index] %> </h4>
+            <p>Description : <%= description[index] %> </p>
+            <p>Due date : <%= dueDate[index] %> </p>
+        <% } %>
+    </body>
+</html>
