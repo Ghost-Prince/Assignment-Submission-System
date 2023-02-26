@@ -19,4 +19,4 @@ This is an assignment submission system that allows students to submit assignmen
 * Faculty members can click on `View Submissions` to view submissions for a specific assignment.
 
 ## License
-This project is licensed under the MIT License.
+This project is licensed under the `MIT License`.
