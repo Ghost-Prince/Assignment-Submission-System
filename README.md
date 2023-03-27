@@ -20,3 +20,7 @@ This is an assignment submission system that allows students to submit assignmen
 
 ## License
 This project is licensed under the `MIT License`.
+
+## Contributers
+- [Adeeb Jamal](https://github.com/adeebjamal)
+- [Shahil Kumar](https://github.com/skfrost19)
