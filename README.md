@@ -12,6 +12,7 @@ This is an assignment submission system that allows students to submit assignmen
 * Start the application by running `server.js` file.
 
 ## Usage
+* Make sure that `MongoDB` is running on your local machine.
 * Navigate to `http://localhost:3000` to access the homepage.
 * Click on `Register` to create a new account.
 * Once logged in, faculty members can click on `Post Assignment` to create a new assignment and view previously posted assignments.
