@@ -16,6 +16,7 @@ mongoose.set("strictQuery", false); // getting rid of warning
 
 mongoose.connect("mongodb://127.0.0.1:27017/assignmentSubmissionSystem");
 
+// <---------- Schemas and Models ---------->
 const userSchema = new mongoose.Schema({
     ID: Number,
     name: String,
@@ -48,6 +49,7 @@ const submissionSchema = new mongoose.Schema({
 });
 const SUBMISSION = new mongoose.model("Submission", submissionSchema);
 
+// <---------- GET routes ---------->
 app.get("/", (req, res) => {
     res.render("homepage");
 });
@@ -140,6 +142,7 @@ app.get("/show-posted-assignments/:facID",(req,res)=> {
     });
 });
 
+// <---------- POST routes ---------->
 app.post("/register", (req, res) => {
     USER.count({}, (err1, count) => {
         if (err1) {
